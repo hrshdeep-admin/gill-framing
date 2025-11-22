@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Gill Framing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(41, 50, 65, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 70px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Services Overview */
+        .services-overview {
+            padding: 5rem 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .services-overview-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .services-overview h2 {
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .services-overview p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Main Services Section */
+        .main-services {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .main-services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .main-services-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.2);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-header h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-body {
+            padding: 2rem;
+        }
+
+        .service-body p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .service-button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .service-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Additional Services */
+        .additional-services {
+            padding: 5rem 5%;
+            background: #fff;
+        }
+
+        .additional-services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .additional-services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .additional-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .additional-card:hover {
+            border-color: #ff6b35;
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.15);
+        }
+
+        .additional-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .additional-card h3 {
+            font-size: 1.3rem;
+            color: #293241;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .additional-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .process-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-content h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .process-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            color: #293241;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .process-step p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(135deg, #ff7d4d 0%, #ff6b35 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1f2e;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(41, 50, 65, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .additional-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">GILL <span>FRAMING</span></div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about/index.html">About</a></li>
+                <li><a href="../services/index.html">Services</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our Services</h1>
+        <p>Comprehensive Framing Solutions for Every Construction Need</p>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="services-overview-content">
+            <h2>Professional Framing Services</h2>
+            <p>At Gill Framing, we provide a complete range of residential and commercial framing services throughout Alberta. Our experienced team combines traditional craftsmanship with modern techniques to deliver structures built to last. From custom homes to multi-unit developments, we have the expertise and equipment to handle projects of any size.</p>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="main-services">
+        <h2>Our Core Services</h2>
+        <p class="main-services-subtitle">Expert framing solutions tailored to your project requirements</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🏠</div>
+                    <h3>Residential Framing</h3>
+                </div>
+                <div class="service-body">
+                    <p>Custom home framing services that bring architectural visions to life with precision and quality craftsmanship.</p>
+                    <ul class="service-features">
+                        <li>New home construction</li>
+                        <li>Custom home framing</li>
+                        <li>Home additions & extensions</li>
+                        <li>Garage framing</li>
+                        <li>Deck & patio structures</li>
+                        <li>Basement framing</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Residential%20Framing%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Framing</h3>
+                </div>
+                <div class="service-body">
+                    <p>Large-scale commercial framing projects delivered on time and within budget with professional precision.</p>
+                    <ul class="service-features">
+                        <li>Multi-unit residential buildings</li>
+                        <li>Retail & office spaces</li>
+                        <li>Industrial facilities</li>
+                        <li>Warehouses & storage units</li>
+                        <li>Restaurant & hospitality</li>
+                        <li>Municipal projects</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Commercial%20Framing%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🪵</div>
+                    <h3>Wood Framing</h3>
+                </div>
+                <div class="service-body">
+                    <p>Traditional wood frame construction using premium lumber and time-tested building techniques.</p>
+                    <ul class="service-features">
+                        <li>Conventional stick framing</li>
+                        <li>Platform frame construction</li>
+                        <li>Timber frame structures</li>
+                        <li>Engineered wood systems</li>
+                        <li>Floor & roof trusses</li>
+                        <li>Load-bearing walls</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Wood%20Framing%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🔩</div>
+                    <h3>Steel Framing</h3>
+                </div>
+                <div class="service-body">
+                    <p>Modern steel stud framing offering superior strength, durability, and fire resistance for commercial projects.</p>
+                    <ul class="service-features">
+                        <li>Cold-formed steel framing</li>
+                        <li>Load-bearing metal studs</li>
+                        <li>Interior & exterior walls</li>
+                        <li>Steel joist systems</li>
+                        <li>Fire-rated assemblies</li>
+                        <li>Seismic-resistant structures</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Steel%20Framing%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🏘️</div>
+                    <h3>Multi-Family Units</h3>
+                </div>
+                <div class="service-body">
+                    <p>Specialized framing for apartment complexes, condos, and townhome developments with efficient construction timelines.</p>
+                    <ul class="service-features">
+                        <li>Apartment buildings</li>
+                        <li>Condominium complexes</li>
+                        <li>Townhomes & duplexes</li>
+                        <li>Student housing</li>
+                        <li>Senior living facilities</li>
+                        <li>Mixed-use developments</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Multi-Family%20Framing%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">⚡</div>
+                    <h3>Rough Carpentry</h3>
+                </div>
+                <div class="service-body">
+                    <p>Complete rough carpentry services including structural installations, sheathing, and subflooring systems.</p>
+                    <ul class="service-features">
+                        <li>Wall framing & sheathing</li>
+                        <li>Roof framing & decking</li>
+                        <li>Floor joist installation</li>
+                        <li>Subflooring systems</li>
+                        <li>Stair framing</li>
+                        <li>Structural blocking</li>
+                    </ul>
+                    <a href="mailto:Gurpreetgill322@yahoo.com?subject=Rough%20Carpentry%20Inquiry" class="service-button">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="additional-services">
+        <div class="additional-services-content">
+            <h2>Additional Services</h2>
+            <div class="additional-grid">
+                <div class="additional-card">
+                    <div class="additional-icon">📐</div>
+                    <h3>Blueprint Reading</h3>
+                    <p>Expert interpretation of architectural plans and specifications</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">🛠️</div>
+                    <h3>Material Estimation</h3>
+                    <p>Accurate material takeoffs and cost projections for budgeting</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">📋</div>
+                    <h3>Permit Assistance</h3>
+                    <p>Help with building permits and code compliance documentation</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">👷</div>
+                    <h3>Project Management</h3>
+                    <p>Coordination with other trades and timeline management</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">🔍</div>
+                    <h3>Site Inspections</h3>
+                    <p>Quality control and progress inspections throughout construction</p>
+                </div>
+                <div class="additional-card">
+                    <div class="additional-icon">🚨</div>
+                    <h3>Emergency Repairs</h3>
+                    <p>24/7 emergency structural repair and stabilization services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="process-content">
+            <h2>Our Process</h2>
+            <p class="process-subtitle">A streamlined approach to deliver quality results every time</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>Initial meeting to discuss your project requirements and timeline</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Estimate</h3>
+                    <p>Detailed quote with transparent pricing and material specifications</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Planning</h3>
+                    <p>Project scheduling, permit coordination, and material procurement</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Execution</h3>
+                    <p>Skilled crews complete framing with precision and efficiency</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Inspection</h3>
+                    <p>Quality control checks and building code compliance verification</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3>Completion</h3>
+                    <p>Final walkthrough and project handoff to your satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Contact us today for a free consultation and detailed estimate</p>
+        <a href="mailto:Gurpreetgill322@yahoo.com?subject=Enquiry%20for%20a%20free%20estimate" class="cta-button">Request an Estimate</a>
+        <a href="tel:3068505297" class="cta-button">Call: (306) 850-5297</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Gill Framing. All rights reserved. | Licensed, Bonded & Insured</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(41, 50, 65, 0.98)';
+            } else {
+                nav.style.background = 'rgba(41, 50, 65, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

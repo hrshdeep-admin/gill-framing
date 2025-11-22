@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Gill Framing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(41, 50, 65, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 70px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mission & Vision Section */
+        .mission-section {
+            padding: 5rem 5%;
+            background: #fff;
+        }
+
+        .mission-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .mission-card {
+            background: #f8f9fa;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b35;
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.2);
+            background: #fff;
+        }
+
+        .mission-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-card h2 {
+            font-size: 2rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-section {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .why-choose-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-choose-content h2 {
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .why-choose-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .feature-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 5rem 5%;
+            background: #fff;
+        }
+
+        .values-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .values-content h2 {
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,107,53,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        .value-card:hover {
+            transform: scale(1.05);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .team-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-content h2 {
+            font-size: 2.5rem;
+            color: #293241;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .team-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #ff6b35;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(135deg, #ff7d4d 0%, #ff6b35 100%);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #fff;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ff6b35;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1f2e;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(41, 50, 65, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .team-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">GILL <span>FRAMING</span></div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about/index.html">About</a></li>
+                <li><a href="../services/index.html">Services</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Contact Us!</h1>
+        <p>Building Excellence Through Quality, Integrity & Craftsmanship</p>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <div class="mission-card">
+                <div class="mission-icon">🎯</div>
+                <h2>Our Mission</h2>
+                <p>To deliver superior framing services that exceed industry standards while maintaining the highest levels of safety, quality, and customer satisfaction. We build lasting structures and lasting relationships.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">🔭</div>
+                <h2>Our Vision</h2>
+                <p>To be Alberta's most trusted and respected framing contractor, recognized for innovation, reliability, and commitment to building communities one frame at a time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section">
+        <div class="why-choose-content">
+            <h2>Why Choose Gill Framing?</h2>
+            <p class="why-choose-subtitle">Experience the difference that quality craftsmanship makes</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><span class="feature-icon">✅</span> Licensed & Insured</h3>
+                    <p>Fully licensed, bonded, and insured for your protection and peace of mind. We meet all regulatory requirements and maintain comprehensive coverage.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="feature-icon">⚡</span> Fast & Efficient</h3>
+                    <p>We respect your timeline. Our experienced crews work efficiently without compromising quality, ensuring your project stays on schedule.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="feature-icon">🏆</span> Quality Workmanship</h3>
+                    <p>Every frame is built to last. We use premium materials and proven techniques to deliver structures that stand the test of time.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="feature-icon">💰</span> Competitive Pricing</h3>
+                    <p>Fair, transparent pricing with no hidden costs. We provide detailed estimates and work within your budget without sacrificing quality.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="feature-icon">🛡️</span> Safety First</h3>
+                    <p>Strict adherence to safety protocols and regulations. Our jobsites are clean, organized, and maintain the highest safety standards.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="feature-icon">🤝</span> Customer Focused</h3>
+                    <p>Clear communication, responsive service, and attention to your needs. Your satisfaction is our top priority from start to finish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-content">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Excellence</h3>
+                    <p>We strive for perfection in every project, never settling for "good enough" when exceptional is possible.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Integrity</h3>
+                    <p>Honest communication, transparent pricing, and ethical practices guide everything we do.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🏗️</div>
+                    <h3>Craftsmanship</h3>
+                    <p>Pride in our work and dedication to the art of building structures that last generations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <h3>Safety</h3>
+                    <p>Commitment to creating a safe work environment for our team, partners, and clients.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>Embracing new technologies and methods to improve efficiency and quality.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌟</div>
+                    <h3>Reliability</h3>
+                    <p>Consistent performance, meeting deadlines, and delivering on our promises every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-content">
+            <h2>Our Team</h2>
+            <p class="team-subtitle">Skilled professionals dedicated to building excellence</p>
+            <div class="team-stats">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">19+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let's discuss how we can bring your construction vision to life</p>
+        <a href="mailto:Gurpreetgill322@yahoo.com?subject=Enquiry%20for%20a%20free%20estimate" class="cta-button">Request an Estimate</a>
+        <a href="tel:3068505297" class="cta-button secondary">Call: (306) 850-5297</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Gill Framing. All rights reserved. | Licensed, Bonded & Insured</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(41, 50, 65, 0.98)';
+            } else {
+                nav.style.background = 'rgba(41, 50, 65, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
