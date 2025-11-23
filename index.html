@@ -3,486 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gill Framing and Renovations Ltd. - Professional House Framing & Construction</title>
+    <title>Gill Framing and Renovations Ltd.</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; color: #2c3e50; line-height: 1.6; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(41, 50, 65, 0.95); backdrop-filter: blur(10px); padding: 1rem 5%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .nav-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #fff; letter-spacing: 1px; }
+        .logo span { color: #ff6b35; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; transition: color 0.3s ease; font-size: 1rem; font-weight: 500; }
+        .nav-links a:hover { color: #ff6b35; }
+        .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .hero { margin-top: 70px; height: 90vh; background: linear-gradient(135deg, rgba(41, 50, 65, 0.85) 0%, rgba(61, 90, 128, 0.85) 100%); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; width: 100%; height: 100%; background-image: linear-gradient(45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%), linear-gradient(-45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%); background-size: 60px 60px; opacity: 0.2; animation: blueprintMove 20s infinite linear; }
+        @keyframes blueprintMove { 0% { transform: translate(0, 0); } 100% { transform: translate(60px, 60px); } }
+        .hero-content { text-align: center; z-index: 1; padding: 2rem; max-width: 900px; }
+        .hero h1 { font-size: 3.5rem; color: #fff; margin-bottom: 1rem; animation: fadeInUp 1s ease; font-weight: 800; }
+        .hero p { font-size: 1.3rem; color: #e0e0e0; margin-bottom: 2rem; animation: fadeInUp 1s ease 0.2s backwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .cta-button { display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%); color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4); border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6); }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #2c3e50;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* PROJECT GALLERY SECTION */
+        .gallery { padding: 5rem 5%; background: linear-gradient(180deg, #1a1f2e 0%, #293241 100%); position: relative; overflow: hidden; }
+        .gallery::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(255,107,53,0.05) 0%, transparent 70%); pointer-events: none; }
+        .gallery h2 { text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; font-weight: 800; }
+        .gallery h2 span { color: #ff6b35; }
+        .gallery-subtitle { text-align: center; color: #aaa; margin-bottom: 3rem; font-size: 1.1rem; }
+        .carousel-container { max-width: 900px; margin: 0 auto; position: relative; perspective: 1000px; }
+        .carousel { position: relative; height: 500px; overflow: hidden; border-radius: 15px; box-shadow: 0 25px 80px rgba(0,0,0,0.5); }
+        .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); height: 100%; }
+        .carousel-slide { min-width: 100%; height: 100%; position: relative; overflow: hidden; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .carousel-slide:hover img { transform: scale(1.05); }
+        .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); padding: 3rem 2rem 2rem; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+        .carousel-slide:hover .slide-overlay, .carousel-slide.active .slide-overlay { transform: translateY(0); opacity: 1; }
+        .slide-caption { color: #fff; font-size: 1.2rem; font-weight: 500; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .slide-number { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,107,53,0.9); color: #fff; padding: 0.5rem 1rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; backdrop-filter: blur(5px); }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); color: #fff; width: 55px; height: 55px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; transition: all 0.3s ease; backdrop-filter: blur(10px); z-index: 10; display: flex; align-items: center; justify-content: center; }
+        .carousel-btn:hover { background: #ff6b35; border-color: #ff6b35; transform: translateY(-50%) scale(1.1); box-shadow: 0 0 30px rgba(255,107,53,0.5); }
+        .carousel-btn.prev { left: -27px; }
+        .carousel-btn.next { right: -27px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 12px; margin-top: 2rem; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; }
+        .dot:hover { background: rgba(255,255,255,0.5); transform: scale(1.2); }
+        .dot.active { background: #ff6b35; transform: scale(1.3); border-color: rgba(255,255,255,0.5); box-shadow: 0 0 15px rgba(255,107,53,0.6); }
+        .progress-bar { width: 100%; max-width: 900px; height: 3px; background: rgba(255,255,255,0.1); margin: 1.5rem auto 0; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #ff6b35, #ff8c5a); width: 20%; transition: width 0.3s ease; }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(41, 50, 65, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+        .about { padding: 5rem 5%; background: #f8f9fa; }
+        .about-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text h2 { font-size: 2.5rem; color: #293241; margin-bottom: 1.5rem; font-weight: 800; }
+        .about-text h2 span { color: #ff6b35; }
+        .about-text p { font-size: 1.1rem; color: #555; margin-bottom: 1rem; }
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .stat-box { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-left: 4px solid #ff6b35; }
+        .stat-box h3 { font-size: 2rem; color: #ff6b35; margin-bottom: 0.5rem; }
+        .stat-box p { color: #666; font-size: 0.9rem; }
+        .about-image { background: linear-gradient(135deg, #293241 0%, #3d5a80 100%); height: 450px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+        .about-image::before { content: ''; position: absolute; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%); animation: pulse 3s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.8; } }
+        .about-image span, .about-image small { z-index: 1; }
+        .about-image small { font-size: 1.2rem; margin-top: 1rem; color: #e0e0e0; }
+        .services { padding: 5rem 5%; background: #fff; }
+        .services h2 { text-align: center; font-size: 2.5rem; color: #293241; margin-bottom: 1rem; font-weight: 800; }
+        .services-subtitle { text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem; }
+        .services-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: #f8f9fa; padding: 2rem; border-radius: 10px; text-align: center; transition: all 0.3s ease; border: 2px solid transparent; position: relative; overflow: hidden; }
+        .service-card:hover { transform: translateY(-10px); border-color: #ff6b35; box-shadow: 0 15px 35px rgba(255, 107, 53, 0.2); background: #fff; }
+        .service-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.5rem; color: #293241; margin-bottom: 1rem; font-weight: 700; }
+        .service-card p { color: #666; }
+        .contact { padding: 5rem 5%; background: linear-gradient(135deg, #293241 0%, #3d5a80 100%); color: #fff; }
+        .contact-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; }
+        .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .contact-item { background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 10px; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .contact-item:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.05); }
+        .contact-item h3 { color: #ff6b35; margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700; }
+        footer { background: #1a1f2e; color: #e0e0e0; text-align: center; padding: 2rem; }
+        footer p { opacity: 0.8; }
 
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #ff6b35;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b35;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            height: 90vh;
-            background: linear-gradient(135deg, rgba(41, 50, 65, 0.85) 0%, rgba(61, 90, 128, 0.85) 100%), url('bg-image.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(255, 107, 53, 0.1) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(255, 107, 53, 0.1) 75%);
-            background-size: 60px 60px;
-            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
-            opacity: 0.2;
-            animation: blueprintMove 20s infinite linear;
-        }
-
-        @keyframes blueprintMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            padding: 2rem;
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #e0e0e0;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #ff6b35 0%, #e85a2a 100%);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-            animation: fadeInUp 1s ease 0.4s backwards;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
-            background: linear-gradient(135deg, #ff7d4d 0%, #ff6b35 100%);
-        }
-
-        .cta-button:active {
-            transform: translateY(-1px);
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 5%;
-            background: #f8f9fa;
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: #293241;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .about-text h2 span {
-            color: #ff6b35;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 1rem;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-box {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #ff6b35;
-        }
-
-        .stat-box h3 {
-            font-size: 2rem;
-            color: #ff6b35;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-box p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
-            height: 450px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 4rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        .about-image span {
-            z-index: 1;
-        }
-
-        .about-image small {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            color: #e0e0e0;
-            z-index: 1;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #293241;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .services-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,107,53,0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #ff6b35;
-            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.2);
-            background: #fff;
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: #293241;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: #666;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #293241 0%, #3d5a80 100%);
-            color: #fff;
-        }
-
-        .contact-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.05);
-        }
-
-        .contact-item h3 {
-            color: #ff6b35;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1f2e;
-            color: #e0e0e0;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer p {
-            opacity: 0.8;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(41, 50, 65, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .nav-links.active {
-                transform: translateX(0);
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
+            .menu-toggle { display: block; }
+            .nav-links { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(41, 50, 65, 0.98); flex-direction: column; padding: 2rem; gap: 1rem; transform: translateX(-100%); transition: transform 0.3s ease; }
+            .nav-links.active { transform: translateX(0); }
+            .hero h1 { font-size: 2.5rem; }
+            .about-content, .about-stats, .services-grid, .contact-info { grid-template-columns: 1fr; }
+            .about-content { gap: 2rem; }
+            .carousel { height: 350px; }
+            .carousel-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
+            .slide-caption { font-size: 1rem; }
         }
-
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .logo {
-                font-size: 1.4rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .logo { font-size: 1.4rem; }
+            .carousel { height: 280px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-content">
-            <div class="logo">GILL <span>FRAMING AND RENOVATIONS LTD.</span></div>
+            <div class="logo">GILL <span>FRAMING</span></div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="about/index.html">About</a></li>
-                <li><a href="services/index.html">Services</a></li>
-                <li><a href="contact/index.html">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Building Strong Foundations</h1>
@@ -491,143 +128,137 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- PROJECT GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <h2>Our <span>Projects</span></h2>
+        <p class="gallery-subtitle">Quality craftsmanship showcased in every build</p>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide active"><span class="slide-number">01 / 05</span><img src="assets/photos/photo1.jpeg" alt="Project 1"><div class="slide-overlay"><p class="slide-caption">Custom residential framing - precision craftsmanship</p></div></div>
+                    <div class="carousel-slide"><span class="slide-number">02 / 05</span><img src="assets/photos/photo2.jpeg" alt="Project 2"><div class="slide-overlay"><p class="slide-caption">Multi-story commercial structure in progress</p></div></div>
+                    <div class="carousel-slide"><span class="slide-number">03 / 05</span><img src="assets/photos/photo3.jpeg" alt="Project 3"><div class="slide-overlay"><p class="slide-caption">Roof truss installation - built to last</p></div></div>
+                    <div class="carousel-slide"><span class="slide-number">04 / 05</span><img src="assets/photos/photo4.jpeg" alt="Project 4"><div class="slide-overlay"><p class="slide-caption">Modern townhome development framing</p></div></div>
+                    <div class="carousel-slide"><span class="slide-number">05 / 05</span><img src="assets/photos/photo5.jpeg" alt="Project 5"><div class="slide-overlay"><p class="slide-caption">Complete structural framework ready for finishing</p></div></div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </section>
+
     <section class="about" id="about">
         <div class="about-content">
             <div class="about-text">
                 <h2>Expert <span>House Framing</span> Contractors</h2>
                 <p>Since 2022, Gill Framing has been the premier choice for residential and commercial framing in the region. Our experienced crew specializes in wood and steel framing, bringing projects from foundation to roof with precision and efficiency.</p>
-                <p>We pride ourselves on meeting deadlines, maintaining jobsite safety, and delivering quality craftsmanship that stands the test of time. From custom homes to multi-unit developments, we frame it right the first time.</p>
+                <p>We pride ourselves on meeting deadlines, maintaining jobsite safety, and delivering quality craftsmanship that stands the test of time.</p>
                 <div class="about-stats">
-                    <div class="stat-box">
-                        <h3>60+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>4+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>100%</h3>
-                        <p>Licensed & Insured</p>
-                    </div>
-                    <div class="stat-box">
-                        <h3>Skilled Crew</h3>
-                        <p>Workmanship you can trust </p>
-                    </div>
+                    <div class="stat-box"><h3>60+</h3><p>Projects Completed</p></div>
+                    <div class="stat-box"><h3>4+</h3><p>Years Experience</p></div>
+                    <div class="stat-box"><h3>100%</h3><p>Licensed & Insured</p></div>
+                    <div class="stat-box"><h3>Skilled Crew</h3><p>Workmanship you can trust</p></div>
                 </div>
             </div>
-            <div class="about-image">
-                <span>🏗️</span>
-                <small>Quality Construction</small>
-            </div>
+            <div class="about-image"><span>🏗️</span><small>Quality Construction</small></div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
         <h2>Our Framing Services</h2>
         <p class="services-subtitle">Comprehensive framing solutions for every construction need</p>
         <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🏠</div>
-                <h3>Residential Framing</h3>
-                <p>Custom home framing, additions, renovations, and remodeling with attention to architectural detail.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏢</div>
-                <h3>Commercial Framing</h3>
-                <p>Multi-unit buildings, retail spaces, and commercial structures built to code and on schedule.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🪵</div>
-                <h3>Wood Framing</h3>
-                <p>Traditional wood frame construction using premium lumber and modern building techniques.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔩</div>
-                <h3>Steel Framing</h3>
-                <p>Durable steel stud framing for commercial projects and residential applications.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏘️</div>
-                <h3>Multi-Family Units</h3>
-                <p>Apartment complexes, condos, and townhome developments with efficient construction timelines.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Rough Carpentry</h3>
-                <p>Complete rough carpentry services including decking, sheathing, and structural installations.</p>
-            </div>
+            <div class="service-card"><div class="service-icon">🏠</div><h3>Residential Framing</h3><p>Custom home framing, additions, renovations with attention to detail.</p></div>
+            <div class="service-card"><div class="service-icon">🏢</div><h3>Commercial Framing</h3><p>Multi-unit buildings and commercial structures built to code.</p></div>
+            <div class="service-card"><div class="service-icon">🪵</div><h3>Wood Framing</h3><p>Traditional wood frame construction using premium lumber.</p></div>
+            <div class="service-card"><div class="service-icon">🔩</div><h3>Steel Framing</h3><p>Durable steel stud framing for commercial projects.</p></div>
+            <div class="service-card"><div class="service-icon">🏘️</div><h3>Multi-Family Units</h3><p>Apartment complexes, condos, and townhome developments.</p></div>
+            <div class="service-card"><div class="service-icon">⚡</div><h3>Rough Carpentry</h3><p>Complete rough carpentry including decking and sheathing.</p></div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="contact-content">
             <h2>Let's Build Together</h2>
             <p>Contact us for a free consultation and estimate on your next project</p>
             <div class="contact-info">
-                <div class="contact-item">
-                    <h3>📍 Location</h3>
-                    <p>#20 64078 393 Ave E<br>Okotoks<br>ALBERTA T1S 0L1</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📞 Phone</h3>
-                    <p>Office: 306 (850)5297</p>
-                </div>
-                <div class="contact-item">
-                    <h3>⏰ Hours</h3>
-                    <p>Mon-Fri: 8:00 AM - 5:00 PM<br>Saturday: 8:00 AM - 2:00 PM<br>Sunday: Closed</p>
-                </div>
-                <div class="contact-item">
-                    <h3>✉️ Email</h3>
-                    <p>gurpreetgill322@yahoo.com</p>
-                </div>
+                <div class="contact-item"><h3>📍 Location</h3><p>#20 64078 393 Ave E<br>Okotoks, ALBERTA T1S 0L1</p></div>
+                <div class="contact-item"><h3>📞 Phone</h3><p>306 (850)5297</p></div>
+                <div class="contact-item"><h3>⏰ Hours</h3><p>Mon-Fri: 8AM - 5PM<br>Sat: 8AM - 2PM</p></div>
+                <div class="contact-item"><h3>✉️ Email</h3><p>gurpreetgill322@yahoo.com</p></div>
             </div>
             <br><br>
-            <a href="mailto:gurpreetgill322@yahoo.com?subject=Enquiry%20for%20a%20free%20quote" class="cta-button">
-            Request an Estimate
-            </a>
+            <a href="mailto:gurpreetgill322@yahoo.com?subject=Enquiry%20for%20a%20free%20quote" class="cta-button">Request an Estimate</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Gill Framing LLC. All rights reserved. | Licensed, Bonded & Insured </p>
-    </footer>
+    <footer><p>© 2025 Gill Framing LLC. All rights reserved. | Licensed, Bonded & Insured</p></footer>
 
     <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        let currentSlide = 0;
+        const totalSlides = 5;
+        let touchStartX = 0, touchEndX = 0, autoPlayInterval;
+
+        function initCarousel() {
+            const dotsContainer = document.getElementById('carouselDots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            updateProgress();
+            startAutoPlay();
         }
 
-        // Smooth scrolling for anchor links
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+            document.querySelectorAll('.carousel-slide').forEach((slide, i) => slide.classList.toggle('active', i === currentSlide));
+            updateProgress();
+            resetAutoPlay();
+        }
+
+        function updateProgress() {
+            document.getElementById('progressFill').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        }
+
+        function startAutoPlay() { autoPlayInterval = setInterval(() => moveSlide(1), 5000); }
+        function resetAutoPlay() { clearInterval(autoPlayInterval); startAutoPlay(); }
+
+        // Touch/swipe support
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+        carousel.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) moveSlide(1);
+            else if (touchEndX - touchStartX > 50) moveSlide(-1);
+        }, false);
+
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
-                }
+                document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(41, 50, 65, 0.98)';
-            } else {
-                nav.style.background = 'rgba(41, 50, 65, 0.95)';
-            }
-        });
+        initCarousel();
     </script>
 </body>
 </html>
